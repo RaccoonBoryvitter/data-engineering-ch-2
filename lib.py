@@ -16,7 +16,7 @@ def get_filename_from_request(resp: Response) -> str:
 def unzip_contents(zip_save_dir: str, output_dir: str) -> None:
     """Extracnts CSV files from ZIP archive. After extracting deletes the archive."""
     with ZipFile(zip_save_dir, "r") as zip_ref:
-        csv_files = [file for file in zip_ref.namelist() if file.endswith(".csv")]
+        csv_files = [file for file in zip_ref.namelist() if file.endswith(".csv") and "__MACOSX" not in file]
 
         if not csv_files:
             print("No CSV files found in the ZIP archive.")
